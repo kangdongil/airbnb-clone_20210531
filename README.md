@@ -64,11 +64,19 @@
   - `python manage.py makemigration`
   - `python manage.py migrate`
 - `/config`
+  - `urls.py`: Manage Routers
+-
+
+- `apps.py`: Configure Application
+- `models.py`: Describe the shape of our app's data
+- `admin.py`: Configure the Django Admin panel
+- `views.py`: Render HTML for EndUser
 
 * `__init__.py`: file give access to python
   - We put it on a file so we can import it from Python
-
-- `db.sqlite3`: Development-use DataBase
+* `db.sqlite3`: Development-use DataBase
+* framework vs. library
+  - A framework uses your code, you use the library.
 
 # 2.3 Django Server와 Adminpanel
 
@@ -88,3 +96,11 @@
   - Django will update DB with migration system
   - `makemigration`: when new type of data added
   - `migrate`: when data added
+
+# 2.6 Django App 만들기
+
+- Create Application
+  `django-admin startapp [plural-name]`
+  ```
+  users, rooms, reviews, conversations, lists, reservations
+  ```
