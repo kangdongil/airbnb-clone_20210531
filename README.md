@@ -9,6 +9,13 @@
   - `git init`
   - `git remote origin master ~.git`
 
+# 0.4 Django란,
+
+- a big toy that we have to learn how to use.
+
+- Always read 'Comment(#)' and Documents
+  [Doc](https://docs.djangoproject.com/)
+
 # 2.0 Django 설치하기
 
 - `pip install Django==2.2.5`
@@ -39,3 +46,45 @@
 
 * Linter: help catch error by highlighting before execute code
 * Formatter: help code follow the convention
+
+# 2.2 Django 프로젝트 구조 알아보기
+
+- Project
+  - A group of applications
+- Application
+  - A group of functions specific to a part of our project (users, photos, messages)
+  - Application should be as small as possible
+- Function & Class
+
+- `manage.py`
+  - Execute manage.py command
+    `python manage.py [command]`
+  - `python manage.py runserver`
+  - `python manage.py createsuperuser`
+  - `python manage.py makemigration`
+  - `python manage.py migrate`
+- `/config`
+
+* `__init__.py`: file give access to python
+  - We put it on a file so we can import it from Python
+
+- `db.sqlite3`: Development-use DataBase
+
+# 2.3 Django Server와 Adminpanel
+
+- Run Migration
+  `python manage.py makemigration`
+  `python manage.py migrate`
+- Create SuperUser(adminpanel access-purpose)
+  `python manage.py createsuperuser`
+- Start Django Server
+  `python manage.py runserver`
+  `http://127.0.0.1:8000/`
+- Django Admin
+  `http://127.0.0.1:8000/admin`
+
+* migration: change the shape of the data on the database
+  - DB can be handled with SQL Language
+  - Django will update DB with migration system
+  - `makemigration`: when new type of data added
+  - `migrate`: when data added
