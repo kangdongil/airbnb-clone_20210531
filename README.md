@@ -64,6 +64,8 @@
   - `python manage.py makemigration`
   - `python manage.py migrate`
 - `/config`
+  - `settings.py`
+    TIMEZONE = "Asia/Seoul"
   - `urls.py`: Manage Routers
 -
 
@@ -97,10 +99,89 @@
   - `makemigration`: when new type of data added
   - `migrate`: when data added
 
-# 2.6 Django App 만들기
+# 2.6 Django Application 만들기
 
 - Create Application
   `django-admin startapp [plural-name]`
   ```
   users, rooms, reviews, conversations, lists, reservations
   ```
+- Register Application
+  - `/config/settings.py`
+  - add `[AppsName].apps.[AppsName]config`
+    in PROJECT_APPS
+- Migrate changes
+
+# 3.0 User App 만들기
+
+- There is already default Django User Application
+  profile, status, group, permission
+- We need to extend the default one
+
+- Create Model
+  - [Link](#-3.0.1-Django-Model-만들기)
+  - Add DocString into Class
+    ```
+    """ ~ """
+    ```
+- Form AdminPanel
+
+* Object Inheritence: Extend
+
+# 3.0.1 Django Model 만들기
+
+- Create Model
+  - Create class in `models.py`
+    ```
+    class [ClassName]([Inherit]):
+    pass
+    ```
+  - for most App, inherit 'models.Model'
+    `class User(models.Model):`
+  - For User App, inherit AbstractUser
+    (If you want to inherit default one)
+    `from django.contrib.auth.models import AbstractUser`
+    `class User(AbstractUser):`
+- Create Fields for model
+  - `[FieldName] = models.[Field]()`
+  - Set `default=""` or `null=True`
+    - settings needed to handle existing data, when new column is added
+    - `default=""` is add "" when it's empty
+    - `null=True` is leaving as empty
+  - Set Arg `blank=True` when blank is allowed
+    - `default` and `null` is for DB
+    - `blank` is for the Admin Form
+
+* model: describe shape of the data
+  - when new model or field is added, we need to migrate
+* FieldType - Text
+  - TextField()
+    : Multi-Line Text
+  - CharField()
+    : One-Line Text, Limited Letter
+    max_length=
+  - CharField(choices=[Tuple])
+    1. Create Constants
+       `[ConstantName]="[DBValue]"`
+       `GENDER_MALE="male"`
+    2. Create Tuple for choices
+       ```GENDER_CHOICES=(
+         ([Constant], "[Form]"),
+         )
+       ```
+       `(GENDER_MALE, "Male")`
+    3. Add Arg in CharField
+       `models.CharField(choices=[CHOICES], max_length=~,)`
+* FieldType - File
+  - ImageField()
+    - `pip install pillow`
+
+# 3.0.2 Django AdminPanel 만들기
+
+- Form AdminPanel
+  - `admin.py`
+  - `from . import models`
+    ```@admin.register(model.[Model])
+    class [AdminName](admin.ModelAdmin):
+    pass
+    ```
