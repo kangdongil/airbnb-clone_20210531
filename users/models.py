@@ -4,6 +4,8 @@ from django.db import models
 
 class User(AbstractUser):
 
+    """User Model Definition"""
+
     GENDER_MALE = "male"
     GENDER_FEMALE = "female"
     GENDER_OTHER = "other"

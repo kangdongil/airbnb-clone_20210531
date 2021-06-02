@@ -67,12 +67,11 @@
   - `settings.py`
     TIMEZONE = "Asia/Seoul"
   - `urls.py`: Manage Routers
--
-
-- `apps.py`: Configure Application
-- `models.py`: Describe the shape of our app's data
-- `admin.py`: Configure the Django Admin panel
-- `views.py`: Render HTML for EndUser
+- `/[App]`
+  - `apps.py`: Configure Application
+  - `models.py`: Describe the shape of our app's data
+  - `admin.py`: Configure the Django Admin panel
+  - `views.py`: Render HTML for EndUser
 
 * `__init__.py`: file give access to python
   - We put it on a file so we can import it from Python
@@ -101,6 +100,14 @@
 
 # 2.6 Django Application 만들기
 
+- Categorize Application
+  - `/config/settings.py`
+  - INSTALLED_APPS >> DJANGO_APPS
+  - Seperate `INSTALLED_APPS` to `DJANGO_APPS` and `PROJECT_APPS`
+    `INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS`
+    `PROJECT_APPS = ["~"]`
+  - Add `THIRD_PARTY_APPS`
+    `THIRD_PARTY_APPS = ["~"]`
 - Create Application
   `django-admin startapp [plural-name]`
   ```
@@ -118,6 +125,10 @@
   profile, status, group, permission
 - We need to extend the default one
 
+- add AUTH_USER_MODEL in settings.py
+  - `/config/settings.py`
+  - add AUTH_USER_MODEL = "[AppName].[ModelName]"
+    `AUTH_USER_MODEL = "users.User"`
 - Create Model
   - [Link](#-3.0.1-Django-Model-만들기)
   - Add DocString into Class
@@ -154,6 +165,9 @@
 
 * model: describe shape of the data
   - when new model or field is added, we need to migrate
+* field: help define how the valid data is
+  - model is made out of fields
+  - django migration will convert field into SQL
 * FieldType - Text
   - TextField()
     : Multi-Line Text
@@ -203,3 +217,22 @@
   - list_filter
     - allow filter on right panel
     - `list_filter = ("~", "~")`
+
+* fieldsets: A group of fields
+  - Django AdminPanel, it looks like blue title row
+  - fieldsets = ([fieldset]("[FSName]", [content]{"field": ("~","~",)}),)
+  - Default Fieldset: UserAdmin.fieldsets
+  ```
+  fieldset = (
+      (
+        "Custom",
+        {
+          "fields": (
+            "avatar",
+            "gender",
+            "bio"
+          )
+        }
+      ),
+    )
+  ```
