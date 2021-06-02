@@ -126,7 +126,7 @@
     ```
 - Form AdminPanel
 
-* Object Inheritence: Extend
+* Object Oriented Programming: extend object by inheriting
 
 # 3.0.1 Django Model 만들기
 
@@ -172,6 +172,10 @@
        `(GENDER_MALE, "Male")`
     3. Add Arg in CharField
        `models.CharField(choices=[CHOICES], max_length=~,)`
+* FieldType - Numeric
+* FieldType - Others
+  - BooleanField()
+  - DateField()
 * FieldType - File
   - ImageField()
     - `pip install pillow`
