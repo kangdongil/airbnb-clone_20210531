@@ -184,8 +184,22 @@
 
 - Form AdminPanel
   - `admin.py`
-  - `from . import models`
+  - Register model into admin
+    - `from . import models`
+    - Original Way
+    ```
+    class [AdminName](admin.ModelAdmin)
+    admin.site.register(models.[Model], [AdminName])
+    ```
+    - Using Decorater(@)
     ```@admin.register(model.[Model])
     class [AdminName](admin.ModelAdmin):
     pass
     ```
+- Extend AdminPanel
+  - list_display
+    - display what column are you display on adminpanel
+    - `list_display = ("~", "~")`
+  - list_filter
+    - allow filter on right panel
+    - `list_filter = ("~", "~")`
