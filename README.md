@@ -97,6 +97,7 @@
   - Django will update DB with migration system
   - `makemigration`: when new type of data added
   - `migrate`: when data added
+  - Migration should be little as possible
 
 # 2.6 Django Application 만들기
 
@@ -190,6 +191,7 @@
 * FieldType - Others
   - BooleanField()
   - DateField()
+    null=True
 * FieldType - File
   - ImageField()
     - `pip install pillow`
