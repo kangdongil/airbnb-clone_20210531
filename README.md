@@ -16,6 +16,9 @@
 - Always read 'Comment(#)' and Documents
   [Doc](https://docs.djangoproject.com/)
 
+- Import Sequence Convention:
+  `Python` >> `Django` >> `Third-Party` >> `Custom`
+
 # 2.0 Django 설치하기
 
 - `pip install Django==2.2.5`
@@ -120,25 +123,40 @@
     in PROJECT_APPS
 - Migrate changes
 
+- Create Model
+- Form AdminPanel
+
+* Object Oriented Programming: extend object by inheriting
+* CB(ClassBased)
+  - Inherit
+  - Docstrings
+    `""" ~ Definition """`
+
 # 3.0 User App 만들기
 
 - There is already default Django User Application
   profile, status, group, permission
 - We need to extend the default one
 
-- add AUTH_USER_MODEL in settings.py
-  - `/config/settings.py`
-  - add AUTH_USER_MODEL = "[AppName].[ModelName]"
-    `AUTH_USER_MODEL = "users.User"`
-- Create Model
-  - [Link](#-3.0.1-Django-Model-만들기)
-  - Add DocString into Class
+- `/config/settings.py`
+  - add `AUTH_USER_MODEL`
+    - AUTH_USER_MODEL = "[AppName].[ModelName]"
+      `AUTH_USER_MODEL = "users.User"`
+- `/users/models.py`
+  - create model `User`
+  - inherit `AbstractUser`
+    `from django.contrib.auth.models import AbstractUser`
+  - create fields
     ```
-    """ ~ """
+    avatar(ImageField) / gender(CharFieldChoices) / bio(TextField) /
+    birthdate(DateField) / language(CharField) / currency(CharField) / superhost(BooleanField)
     ```
-- Form AdminPanel
-
-* Object Oriented Programming: extend object by inheriting
+- `/users/admin.py`
+  - create admin `CustomUserAdmin`
+  - inherit `UserAdmin`
+    `from django.contrib.auth.admin import UserAdmin`
+  - configure fieldsets by extending default one
+    `fieldsets = UserAdmin.fieldset + (~)`
 
 # 3.0.1 Django Model 만들기
 
@@ -188,10 +206,28 @@
     3. Add Arg in CharField
        `models.CharField(choices=[CHOICES], max_length=~,)`
 * FieldType - Numeric
+  - IntegerField()
+  - DecimalField()
 * FieldType - Others
+
   - BooleanField()
+    True || False
   - DateField()
-    null=True
+    - Required:
+      `null=True`
+    - `auto_now=True`
+      : get date and time when model saved
+    - `auto_now_add=True`
+      : get date and time when model first created
+  - TimeField()
+  - DateTimeField()
+  - CountryField()
+    - `pip install django-countries`
+      [Link](https://github.com/SmileyChris/django-countries)
+    - `django_countries` in THIRD_PARTY_APP
+    - `from django_countries.fields import CountryField`
+    - `[FieldName] = CountryField()`
+
 * FieldType - File
   - ImageField()
     - `pip install pillow`
@@ -213,6 +249,7 @@
     pass
     ```
 - Extend AdminPanel
+
   - list_display
     - display what column are you display on adminpanel
     - `list_display = ("~", "~")`
@@ -220,10 +257,16 @@
     - allow filter on right panel
     - `list_filter = ("~", "~")`
 
+- give name to object
+  set model a method `__str__`
+  ```def __str__(self):
+        return self.name
+  ```
+
 * fieldsets: A group of fields
   - Django AdminPanel, it looks like blue title row
   - fieldsets = ([fieldset]("[FSName]", [content]{"field": ("~","~",)}),)
-  - Default Fieldset: UserAdmin.fieldsets
+  - Default Fieldset: [AdminName].fieldsets
   ```
   fieldset = (
       (
@@ -238,3 +281,66 @@
       ),
     )
   ```
+
+# 4.0 Abstract Model 만들기
+
+- Create Core App
+  - `django-admin startapp core`
+  - `core.apps.CoreConfig`
+- Add TimeStampedModel and add `class Meta`
+  ```class Meta:
+    abstract=True
+  ```
+
+* abstract model: models that doesn't appear in DB
+  - models mostly used to extend models
+
+# 4.1 Room App 만들기
+
+- Create model `Room`
+  ```
+  name / description / country / city / price / address /
+  guests / bedrooms / baths / check_in / check_out / instant_book /
+  host / room_type
+  ```
+- Create model `AbstractItem`
+  - `class Meta: abstract=True`
+  - `name = CharField(~)`
+  - Inherit `AbstractItem` for Item Model
+  - Display Item Model on adminpanel
+    - can register multiple models
+  -
+
+# 4.2 Relationship란, (ForeignKey, ManytoMany)
+
+- ForeignKey(Many-To-One): Connect one model to the other
+  - `models.ForeignKey([ModelName], on_delete="~")`
+  - `on_delete`: behavior when referenced object is deleted
+    - CASCADE: affect every sub-object
+    - PROTECT: forbid deletion until sub-object exist
+    - SET_NULL: sub-object becomes orphan
+    - SET_DEFAULT: default after deletion
+  - Example
+    `Many Rooms to One User`
+    `Many Post to One User`
+    `Many Video to One Channel`
+  - exchanges id(pk) to identify which data is
+- ManyToMany Relationship
+  - `models.ManyToManyField([ModelName])`
+  - to improve adminpanel,`
+-
+
+- String Method(Reference)
+  Instead of Import, You can use String("~") to refer model. for model from other app, "[app].[model]"
+
+# 4.5 Meta Class란,
+
+- abstract=True
+- verbose_name
+- verbose_name_plural
+- ordering=["Field"]
+  reverse order for ["-Field"]
+
+* Meta Class
+
+- builtin class in model with some configuration options
