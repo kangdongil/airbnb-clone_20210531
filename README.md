@@ -160,6 +160,8 @@
 
 # 3.0.1 Django Model 만들기
 
+- Import Meta Model
+  `from core import models as CoreModels`
 - Create Model
   - Create class in `models.py`
     ```
@@ -181,6 +183,7 @@
   - Set Arg `blank=True` when blank is allowed
     - `default` and `null` is for DB
     - `blank` is for the Admin Form
+- Give Name to Model's Object(`__str__`)
 
 * model: describe shape of the data
   - when new model or field is added, we need to migrate
@@ -262,6 +265,7 @@
   ```def __str__(self):
         return self.name
   ```
+  - This name will appear on adminpanel
 
 * fieldsets: A group of fields
   - Django AdminPanel, it looks like blue title row
@@ -314,17 +318,15 @@
 # 4.2 Relationship란, (ForeignKey, ManytoMany)
 
 - ForeignKey(Many-To-One): Connect one model to the other
-  - `models.ForeignKey([ModelName], on_delete="~")`
+  - `models.ForeignKey([ModelName], on_delete="models.~")`
   - `on_delete`: behavior when referenced object is deleted
     - CASCADE: affect every sub-object
     - PROTECT: forbid deletion until sub-object exist
     - SET_NULL: sub-object becomes orphan
     - SET_DEFAULT: default after deletion
-  - Example
-    `Many Rooms to One User`
-    `Many Post to One User`
-    `Many Video to One Channel`
-  - exchanges id(pk) to identify which data is
+  - gives access to other model's data
+    `models.ForeignKey("users.User", ~)`
+    `room.host(users).email`
 - ManyToMany Relationship
   - `models.ManyToManyField([ModelName])`
   - to improve adminpanel,`
