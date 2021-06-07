@@ -251,7 +251,15 @@
     class [AdminName](admin.ModelAdmin):
     pass
     ```
-- Extend AdminPanel
+- Organize AdminPanel
+  - fieldsets
+    `fieldsets = ([Title], {[Content]})`,
+    `[Content]`: `"[Attribute]": (~)`
+    - "fields"
+    - "classes"
+      - "collapse"
+        : allow folding fieldset
+- Organize AdminPanel
 
   - list_display
     - display what column are you display on adminpanel
@@ -259,6 +267,13 @@
   - list_filter
     - allow filter on right panel
     - `list_filter = ("~", "~")`
+  - search_fields
+    `search_fields = "~"`
+    - search case Prefix
+      - icontain(default): insensitive on case
+      - startswith(^)
+      - iexact(=)
+      - search(@)
 
 - give name to object
   set model a method `__str__`
@@ -295,9 +310,11 @@
   ```class Meta:
     abstract=True
   ```
+- Import CoreModel
+  `import core.models as CoreModel`
 
 * abstract model: models that doesn't appear in DB
-  - models mostly used to extend models
+  - models mostly used to extend mode`s
 
 # 4.1 Room App 만들기
 
@@ -334,6 +351,8 @@
 
 - String Method(Reference)
   Instead of Import, You can use String("~") to refer model. for model from other app, "[app].[model]"
+- `__` Lookup Method
+  `[ForeignKey]__[RelatedName]`
 
 # 4.5 Meta Class란,
 
@@ -346,3 +365,5 @@
 * Meta Class
 
 - builtin class in model with some configuration options
+
+# 6.0
