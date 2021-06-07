@@ -19,10 +19,14 @@
 - Import Sequence Convention:
   `Python` >> `Django` >> `Third-Party` >> `Custom`
 
-# 2.0 Django 설치하기
+# 2.0 Django 설치하기 & 실행하기
 
-- `pip install Django==2.2.5`
-- `which django-admin` || `django-admin`
+- Installation
+  `pip install Django==2.2.5`
+- Check-if-Install
+  `which django-admin` || `django-admin`
+- Execution
+  `python manage.py shell`
 
 # 2.0.1 Django 프로젝트 시작하기
 
@@ -259,8 +263,7 @@
     - "classes"
       - "collapse"
         : allow folding fieldset
-- Organize AdminPanel
-
+- Arrange AdminPanel
   - list_display
     - display what column are you display on adminpanel
     - `list_display = ("~", "~")`
@@ -268,21 +271,32 @@
     - allow filter on right panel
     - `list_filter = ("~", "~")`
   - search_fields
-    `search_fields = "~"`
+    `search_fields = ("~")`
     - search case Prefix
       - icontain(default): insensitive on case
       - startswith(^)
       - iexact(=)
       - search(@)
+  - ordering
+    `ordering = ("~")`
+    set default ordering
+- Give Functionality on AdminPanel
+  - How to add function
+    ```
+    def [Title](self, obj):
+          ~
+          return [Something]
+    ```
+  - Assign Name to Function
+    [FunctionName].short_descriptions = ""
 
-- give name to object
+* fieldsets: A group of fields
+* Assign Name to Object
   set model a method `__str__`
   ```def __str__(self):
         return self.name
   ```
   - This name will appear on adminpanel
-
-* fieldsets: A group of fields
   - Django AdminPanel, it looks like blue title row
   - fieldsets = ([fieldset]("[FSName]", [content]{"field": ("~","~",)}),)
   - Default Fieldset: [AdminName].fieldsets
@@ -366,4 +380,13 @@
 
 - builtin class in model with some configuration options
 
-# 6.0
+# 6.3 Managers, QuerySets이란,
+
+- How to use Manager
+  - get all data
+    `User.objects.all()`
+  - get()
+
+* Manager: Help get data from DB
+* QuerySet: List of Object
+* `_set`: Allow reverse-acesss to elements when ForeignKey
