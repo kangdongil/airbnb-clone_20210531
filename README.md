@@ -394,6 +394,10 @@
 * QuerySet Method
   - `[QuerySet].filter()`
 * `_set`: Allow reverse-acesss to elements when ForeignKey
+* related_name: Modify name for `_set`
+  - related_name should be same as Model.(Because it's for target)
+  - reverse-accessor clashes, `[~]_[models]`
+  - related_name can shorten names.
 
 # 7.0 유용한 Python 명령어
 
