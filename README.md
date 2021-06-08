@@ -427,6 +427,8 @@
   Return list of name
 - vars([object])
   Return `__dict__` for class
+- super().~
+  Execute code from Parent Class
 
 # 8.3 Django에서 Media 다루기
 
@@ -474,4 +476,20 @@
   - TabularInline
   - StackedInline
 
-# 8.6
+# 8.7 Save event를 Intercept하기
+
+- save()
+  suitable to save in model
+  ```
+  def save(self, *args, **kwargs):
+  <!-- Do Something -->
+  super().save(*args, **kwargs)
+  <!-- Do Something Else -->
+  ```
+- save_model()
+  save happens from adminpanel
+  ```
+  def save_model(self, req, obj, form, change):
+        print(obj, change, form)
+        super().save_model(req, obj, form, change)
+  ```

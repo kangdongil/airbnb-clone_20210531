@@ -98,5 +98,9 @@ class Room(core_models.TimeStampedModel):
         except ZeroDivisionError:
             return 0
 
+    def save(self, *args, **kwargs):
+        self.city = str.capitalize(self.city)
+        super().save(*args, **kwargs)  # Call the real save() method
+
     def __str__(self):
         return self.name
