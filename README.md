@@ -299,6 +299,7 @@
           ~
           return [Something]
     ```
+    - self argument
   - Name Function when displayed
     [FunctionName].short_descriptions = ""
   - Display Function
@@ -377,7 +378,8 @@
     `room.host(users).email`
 - ManyToMany Relationship
   - `models.ManyToManyField([ModelName])`
-  - to improve adminpanel,`
+  - to improve adminpanel,
+    `filter_horizontal = (~)`
 -
 
 - String Method(Reference)
