@@ -187,6 +187,16 @@
   - Set Arg `blank=True` when blank is allowed
     - `default` and `null` is for DB
     - `blank` is for the Admin Form
+- Give Functionality on Model
+  Model Function is used for entire homepage
+  - How to add function
+    ```
+    def [Title](self, obj):
+          ~
+          return [Something]
+    ```
+  - Name Function when displayed
+    [FunctionName].short_descriptions = ""
 - Give Name to Model's Object(`__str__`)
 
 * model: describe shape of the data
@@ -239,7 +249,7 @@
   - ImageField()
     - `pip install pillow`
 
-# 3.0.2 Django AdminPanel 만들기
+# 3.0.2 Django AdminPanel [만들기
 
 - Form AdminPanel
   - `admin.py`
@@ -267,6 +277,7 @@
   - list_display
     - display what column are you display on adminpanel
     - `list_display = ("~", "~")`
+    - add `__str__` if default one is needed
   - list_filter
     - allow filter on right panel
     - `list_filter = ("~", "~")`
@@ -281,14 +292,20 @@
     `ordering = ("~")`
     set default ordering
 - Give Functionality on AdminPanel
+  Admin Function mostly used only on Admin
   - How to add function
     ```
     def [Title](self, obj):
           ~
           return [Something]
     ```
-  - Assign Name to Function
+  - Name Function when displayed
     [FunctionName].short_descriptions = ""
+  - Display Function
+    add in `list_display`
+  - Duplicate Function by class meta
+  - Enable Boolean Mark
+    `[Function].boolean = True`
 
 * fieldsets: A group of fields
 * Assign Name to Object

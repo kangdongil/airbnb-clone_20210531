@@ -55,7 +55,7 @@ class Photo(core_models.TimeStampedModel):
 
     caption = models.CharField(max_length=80)
     file = models.ImageField()
-    room = models.ForeignKey("Room", on_delete=models.CASCADE)
+    room = models.ForeignKey("Room", on_delete=models.CASCADE, related_name="photos")
 
     def __str__(self):
         return self.caption
@@ -87,6 +87,16 @@ class Room(core_models.TimeStampedModel):
     amenities = models.ManyToManyField("Amenity", blank=True, related_name="rooms")
     facilities = models.ManyToManyField("Facility", blank=True, related_name="rooms")
     house_rules = models.ManyToManyField("HouseRule", blank=True, related_name="rooms")
+
+    def total_rating(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        try:
+            for review in all_reviews:
+                all_ratings += review.rating_average()
+            return all_ratings / len(all_reviews)
+        except ZeroDivisionError:
+            return 0
 
     def __str__(self):
         return self.name
