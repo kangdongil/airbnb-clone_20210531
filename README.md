@@ -292,6 +292,8 @@
   - ordering
     `ordering = ("~")`
     set default ordering
+  - raw_id_fields
+    when long list of items expected, item can be displayed as id
 - Give Functionality on AdminPanel
   Admin Function mostly used only on Admin
   - How to add function
@@ -439,7 +441,7 @@
 - Connect `/uploads` folder to `media/` URL
   - `/config/settings.py`
     `MEDIA_URL = "/media/"`
-- Enabled `/media` URL only in Development
+- Enable `/media` URL only in Development
   - `/config/urls.py`
   - import `settings` and `static`
     `from django.conf import settings`
@@ -448,6 +450,13 @@
     ```
     if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ```
+- Enable adding media from where it belongs to
+  - add `inline=([Class])` in model
+  - create class inherit Inline
+    ```
+    class PhotoInline(admin.[InlineStyle]):
+    model = ~
     ```
 - Output Image on AdminPanel
   - return <img /> HTML
@@ -461,3 +470,8 @@
 * MEDIA_URL: URL that handles the media served from `MEDIA_ROOT`
   - must end in a slash(/)
   - start with slash will make url absolute
+* Style of Inline
+  - TabularInline
+  - StackedInline
+
+# 8.6
