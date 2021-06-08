@@ -444,11 +444,19 @@
   - import `settings` and `static`
     `from django.conf import settings`
     `from django.conf.urls.static import static`
-  - enable `/media` if `debug=True`
+  - get access to `/media` if `debug=True`
     ```
     if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     ```
+- Output Image on AdminPanel
+  - return <img /> HTML
+    `<img width="50px" src="~" />`
+  - get photo url by obj
+    `obj.[ImageField].url`
+  - mark_safe <HTML>
+    `from django.utils.html import mark_safe`
+    `mark_safe(<HTML>)`
 
 * MEDIA_URL: URL that handles the media served from `MEDIA_ROOT`
   - must end in a slash(/)
