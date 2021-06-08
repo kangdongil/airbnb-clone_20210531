@@ -226,7 +226,6 @@
   - IntegerField()
   - DecimalField()
 * FieldType - Others
-
   - BooleanField()
     True || False
   - DateField()
@@ -244,10 +243,12 @@
     - `django_countries` in THIRD_PARTY_APP
     - `from django_countries.fields import CountryField`
     - `[FieldName] = CountryField()`
-
 * FieldType - File
   - ImageField()
     - `pip install pillow`
+    - upload_to
+      when subfolder for download is needed
+  - FileField()
 
 # 3.0.2 Django AdminPanel [만들기
 
@@ -299,7 +300,7 @@
           ~
           return [Something]
     ```
-    - self argument
+    - To use managers, use `self` argument
   - Name Function when displayed
     [FunctionName].short_descriptions = ""
   - Display Function
@@ -424,3 +425,31 @@
   Return list of name
 - vars([object])
   Return `__dict__` for class
+
+# 8.3 Django에서 Media 다루기
+
+- Set path for uploaded media files
+  - default path is "/"(root)
+  - `/config/settings/py`
+      <!-- Before Django 2.0 ver -->
+    `MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")`
+      <!-- After Django 3.1 ver -->
+    `MEDIA_ROOT = BASE_DIR / "uploads"`
+- .gitignore `/uploads`
+- Connect `/uploads` folder to `media/` URL
+  - `/config/settings.py`
+    `MEDIA_URL = "/media/"`
+- Enabled `/media` URL only in Development
+  - `/config/urls.py`
+  - import `settings` and `static`
+    `from django.conf import settings`
+    `from django.conf.urls.static import static`
+  - enable `/media` if `debug=True`
+    ```
+    if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ```
+
+* MEDIA_URL: URL that handles the media served from `MEDIA_ROOT`
+  - must end in a slash(/)
+  - start with slash will make url absolute
