@@ -16,6 +16,10 @@ class CustomUserAdmin(UserAdmin):
                     "avatar",
                     "gender",
                     "bio",
+                    "birthdate",
+                    "language",
+                    "currency",
+                    "superhost",
                 )
             },
         ),

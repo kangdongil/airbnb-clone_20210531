@@ -386,7 +386,18 @@
   - get all data
     `User.objects.all()`
   - get()
+  - count()
 
 * Manager: Help get data from DB
+  `[Model].objects`
 * QuerySet: List of Object
+* QuerySet Method
+  - `[QuerySet].filter()`
 * `_set`: Allow reverse-acesss to elements when ForeignKey
+
+# 7.0 유용한 Python 명령어
+
+- dir([object])
+  Return list of name
+- vars([object])
+  Return `__dict__` for class
