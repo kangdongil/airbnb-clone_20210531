@@ -2,7 +2,10 @@
 
 - Chrome
 - VSCode
-  - Extension: Python
+- VSCode Extension
+  - Python
+  - Djaneiro - Django Snippets
+  - Jinja
 - Python
 - VEW(VirtualEnvWrapper)
 - Git
@@ -596,7 +599,7 @@
     `from [App] import views as [App]_views`
   - Create `urlpatterns` and `path`
     `urlpatterns = [~]`
-    `path("", [View].[Module], name="~")`
+    `path("", [views.py].[View], name="~")`
   - Add `app_name` same as `namespace`
 
 # 10.1 Django Render 이해하기
@@ -623,6 +626,31 @@
     `render(req, [template].html, context={'[name]': [variable]}`
   - use in html as double curlybracket
     `{{[context]}}`
+- Render with Python Logic
+  - if statement
+    ```
+    {% if %}
+    {% else %}
+    {% endif %}
+    ```
+  - for statement
+    ```
+    {% for  in %}
+    {% endfor %}
+    ```
 
 * template: HTML complied by Django
 * context: send variable to template
+
+# 10.3 Django Template 만들기
+
+- Create `base.html` and [App] Folder in `/templates`
+- Extends `base.html`
+  `{% extends "base.html" %}`
+- Add Block
+  - `{% block [Name] %}{% endblock %}` in `base.html`
+  - `{% block [Name] %} ~ {% endblock %}` in extended one
+- Add Partials
+  - `{% include '[html]' %}`
+
+* block: input where child give contents to parent

@@ -1,15 +1,7 @@
-from datetime import datetime
 from django.shortcuts import render
+from . import models
 
 
 def all_rooms(req):
-    now = datetime.now()
-    hungry = True
-    return render(
-        req,
-        "all_rooms.html",
-        context={
-            "now": now,
-            "hungry": hungry,
-        },
-    )
+    all_rooms = models.Room.objects.all()
+    return render(req, "rooms/home.html", context={"rooms": all_rooms})
