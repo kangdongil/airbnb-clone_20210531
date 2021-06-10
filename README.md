@@ -568,3 +568,38 @@
 * Case of Seeder_Faker Example
   `"name": lambda x: seeder.faker.address()`
   `"name": lambda x: seeder.faker.sentence()`
+
+# 10.0 Django Url과 View 알아보기
+
+- Syntax of URL
+  path("[URL]", [VIEW])
+
+* url: way how direct request
+* view: function how reply to request
+  - when accessd View with URL, create `HttpRequest`
+  - When `HttpRequest` occured, `HttpResponse` is mandatory
+
+# 10.0.1 Django URL 관리하기
+
+- `/config/url.py`
+  - Import `include`
+    `from django.urls import include`
+  - Add path with `include` and `namespace`
+    - `/core`
+      `path([URL], include([urls.py], namespace="[=app_name]"))`
+    - `/[App]`
+      ``
+- `/[App]/url.py`
+  - Create `urls.py` in each application folder(core included)
+  - Import `path` and `views`
+    `from django.urls import path`
+    `from [App] import views as [App]_views`
+  - Create `urlpatterns` and `path`
+    `urlpatterns = [~]`
+    `path("", [View].[Module], name="~")`
+  - Add `app_name` same as `namespace`
+
+# 10.1 Django Render 이해하기
+
+- HttpResponse
+  `from django.http import HttpResponse`
