@@ -405,10 +405,12 @@
 # 6.3 Managers, QuerySets이란,
 
 - How to use Manager
-  - get all data
-    `User.objects.all()`
-  - get()
-  - count()
+  `[Module].objects.~()`
+  - objects.all()
+  - objects.get(~)
+  - objects.count()
+  - objects.create([field])
+  - objects.[ManyToMany].add(~)
 
 * Manager: Help get data from DB
   `[Model].objects`
@@ -544,6 +546,13 @@
 - Execute Seeder
   `seeder.execute()`
 - Customizing Seeder with `lambda x`
+  - seeder.execute() return pks
+    - set variable `pk_list`
+      `pk_list = seeder.execute()`
+    - flatten it
+      `from django.contrib.admin.utils import flatten`
+      `pk_list = flatten(list(pk_list.values()))`
+    - use it on your own
 
 * faker: library for fake stuff
   [Link](https://faker.readthedocs.io/en/master/providers/faker.providers.address.html)
