@@ -561,8 +561,10 @@
   - random choices
     - import QuerySets
       `[QuerySet] = [Module].objects.all()`
+    - random.choice
       `"[field]": lambda x: random.choice([QuerySet])`
   - random number
     `[field]: lambda x: random.randint([from], [to])`
 * Case of Seeder_Faker Example
   `"name": lambda x: seeder.faker.address()`
+  `"name": lambda x: seeder.faker.sentence()`
