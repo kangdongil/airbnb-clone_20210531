@@ -602,4 +602,27 @@
 # 10.1 Django Render 이해하기
 
 - HttpResponse
+  : Minimal Requirement for homepage exist
   `from django.http import HttpResponse`
+  `return HttpResponse(content="~")`
+- Render
+  : HttpResponse with HTML file
+  - Create `/templates`
+  - Set TEMPLATES's DIRS
+    - `/config/settings.py`
+    - `os.path.join(BASE_DIR, "templates")` in `TEMPLATES`\_`DIRS`
+      `from django.http import HttpResponse`
+  - Create Html Files in `/templates` folder
+  - Return Render
+    ```
+    def all_rooms(req):
+      return render(req, [template].html)
+    ```
+- Render with Context
+  - add context in `render` argument as `dict`
+    `render(req, [template].html, context={'[name]': [variable]}`
+  - use in html as double curlybracket
+    `{{[context]}}`
+
+* template: HTML complied by Django
+* context: send variable to template
