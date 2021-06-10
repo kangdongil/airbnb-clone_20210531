@@ -493,3 +493,65 @@
         print(obj, change, form)
         super().save_model(req, obj, form, change)
   ```
+
+# 9.0 `manage.py` Command 만들기
+
+- Create folders `/management/commands/`
+  Create `__init__.py` in each folders
+- Create `seed_[something].py` in `/command`
+- Import `BaseCommand`
+  `from django.core.management.base import BaseCommand`
+- Create class `Command` inherit `BaseCommand`
+  `class Command(BaseCommand):`
+- Code `Command` class
+  - help = "~"
+  - To add Argument, (optional)
+    ```
+    def add_arguments(self, parser):
+    parser.add_argument(
+      "--[ArgName]", help="~"
+    )
+    ```
+  - To execute code
+    ```
+    def handle(self, *arg, **options):
+    ~
+    self.stdout.write(self.style.SUCCESS("~"))
+    ```
+
+# 9.1 Django Seed로 데이터 Seed하기
+
+- Install `django_seed`
+  `pip install django_seed`
+- Add `django_seed` in `THIRD_PARTY_APPS`
+  `/config/settings.py`
+- Import Seeder and Module
+  ` from django_seed import Seed`
+  `from [apps].models import [Module]`
+- Add "number" argument
+  ```
+  parser.add_argument(
+    "--number", default=1, type=int, help="~"
+  )
+  ```
+- Use Seeder on `handle` method
+  - Start Seeder
+    `seeder = Seed.seeder()`
+  - Add seeder_entity
+    `seeder.add_entity([Module], number, {[Detail]})`
+    - {[Detail]}
+      `{"[field]": ~}`
+- Execute Seeder
+  `seeder.execute()`
+- Customizing Seeder with `lambda x`
+
+* faker: library for fake stuff
+  [Link](https://faker.readthedocs.io/en/master/providers/faker.providers.address.html)
+* Case of Random Example:
+  `import random`
+  - random choices
+    `"[field]": lambda x: random.choice([QuerySet])`
+  - random number
+    `[field]: lambda x: random.randint([from], [to])`
+* Case of Seeder_Faker Example
+  `"name": lambda x: seeder.faker.address()`
