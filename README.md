@@ -559,7 +559,9 @@
 * Case of Random Example:
   `import random`
   - random choices
-    `"[field]": lambda x: random.choice([QuerySet])`
+    - import QuerySets
+      `[QuerySet] = [Module].objects.all()`
+      `"[field]": lambda x: random.choice([QuerySet])`
   - random number
     `[field]: lambda x: random.randint([from], [to])`
 * Case of Seeder_Faker Example
