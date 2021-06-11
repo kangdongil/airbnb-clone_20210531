@@ -412,6 +412,7 @@
 
   - objects.all()
     Cautious when DB has huge amount of data
+    Make sure it doesn't evaulate on whole range
     Set `offset` and `limit` by adding [~:~]
 
   - objects.get(~)
@@ -687,8 +688,27 @@
     "page_range": range(1, page_count)
     ```
   - Add `Previous` and `Next` Button
--
+- Use Django Paginator
+  [Link](https://docs.djangoproject.com/en/3.2/topics/pagination/)
+  - Get `page` from URL
+    `/?page=1`
+    `page = [request].GET.get("page", [default])`
+  - Get QuerySeet
+    `[QuerySet] = [Module].objects.all()`
+  - Import `Paginator` and `paginate`
+    `from django.core.paginator import Paginator`
+    `paginator = Paginator([QuerySet], [Page_Size])`
+  - `rooms = paginator.get_page(page)`
+  - Context it and Use it on Template
+    - .object_list
+    - .number
+      (=page_number)
+    - .num_pages
+      (=whole_pages)
+    - .has_previous
+    - .has_next
 
 * GET Request: data from URL
 * Template Tag: apply logic on Template
   - [var]|add:~
+    ]
