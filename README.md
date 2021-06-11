@@ -409,7 +409,11 @@
 
 - How to use Manager
   `[Module].objects.~()`
+
   - objects.all()
+    Cautious when DB has huge amount of data
+    Set `offset` and `limit` by adding [~:~]
+
   - objects.get(~)
   - objects.count()
   - objects.create([field])
@@ -654,3 +658,5 @@
   - `{% include '[html]' %}`
 
 * block: input where child give contents to parent
+
+# 11.0 Django Pagination 알아보기
