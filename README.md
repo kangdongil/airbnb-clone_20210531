@@ -610,6 +610,9 @@
 
 # 12.0 Django Path 알아보기
 
+- `reverse` URL by using `namespace` and `name`
+  `from django.urls import reverse`
+  `reverse("[namespace]:[name]")`
 - Add Variable on URL
   - <int:[variable]>
   - make sure add argument on view
@@ -639,8 +642,13 @@
 - Render with Context
   - add context in `render` argument as `dict`
     `render(req, [template].html, context={'[name]': [variable]}`
+    - instead of `context={~}`, just `{~}`
   - use in html as double curlybracket
     `{{[context]}}`
+  - for ForeignKey, Mixin allowed
+    `room.host.superhost`
+  - for ManyToMany, add `.all`
+    `room.amenities.all`
 - Render with Python Logic
   - if statement
     ```
@@ -653,6 +661,27 @@
     {% for  in %}
     {% endfor %}
     ```
+- Error Handling
+  - Use `Try/Except` Statement
+  - Specify Exception
+  - `redirect` to somewhere
+    `from django.shortcuts import redirect`
+    ```
+    except ~:
+      return redirect(~)
+    ```
+  - Raise `404`
+    `from django.http import Http404`
+    `raise Http404()`
+    - Customize Http404
+      - create `templates/404.html`
+      - To see on development,
+        ```
+        DEBUG = False
+        ALLOWED_HOST = "*"
+        ```
+  * Exception List
+    - [Module].DoesNotExist
 
 * template: HTML complied by Django
 * context: send variable to template
