@@ -6,10 +6,10 @@ from . import models
 def all_rooms(req):
     page = req.GET.get("page")
     room_list = models.Room.objects.all()
-    paginator = Paginator(room_list, 10)
-    rooms = paginator.get_page(page)
+    paginator = Paginator(room_list, 10, orphans=5)
+    page = paginator.get_page(page)
     return render(
         req,
         "rooms/home.html",
-        context={"rooms": rooms},
+        context={"page": page},
     )

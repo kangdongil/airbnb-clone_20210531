@@ -690,25 +690,37 @@
   - Add `Previous` and `Next` Button
 - Use Django Paginator
   [Link](https://docs.djangoproject.com/en/3.2/topics/pagination/)
+
   - Get `page` from URL
     `/?page=1`
     `page = [request].GET.get("page", [default])`
-  - Get QuerySeet
+  - Get QuerySet
     `[QuerySet] = [Module].objects.all()`
   - Import `Paginator` and `paginate`
     `from django.core.paginator import Paginator`
     `paginator = Paginator([QuerySet], [Page_Size])`
-  - `rooms = paginator.get_page(page)`
-  - Context it and Use it on Template
-    - .object_list
-    - .number
-      (=page_number)
-    - .num_pages
-      (=whole_pages)
-    - .has_previous
-    - .has_next
+  - Get Page Object
+    - `get_page`
+      `page = paginator.get_page(page)`
+      When invalid return first page
+    - `page`
+      Raise Error when invalid page
+  - Context `page` and Use it on template
+    - `[Page].object_list`
+    - `[Page].number`
+    - `[Page].paginator.num_pages`
+    - `[Page].previous_page_number`
+    - `[Page].next_page_number`
+    - `[Page].has_previous`
+      : Return True if there's a previous page
+    - `[Page].has_next`
+      : Return True if there's a next page
+  - Handle `orphans`
+    `Paginator([QuerySet], [PageSize], [Orphan])`
+    [Orphan] - `orphans=~`
 
 * GET Request: data from URL
 * Template Tag: apply logic on Template
   - [var]|add:~
-    ]
+* orphan: list of element not big as page_size
+  when less or same as orphan merge with previous one
