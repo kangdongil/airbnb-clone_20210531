@@ -660,3 +660,35 @@
 * block: input where child give contents to parent
 
 # 11.0 Django Pagination 알아보기
+
+- How to configure pagination manually
+  - Get `page` from URL
+    `/?page=1`
+    `page = [request].GET.get("page", [default])`
+    - make sure convert `str` into `int`
+      `page = int(page)`
+  - Get QuerySet with offset and limit
+    ```
+    page_size
+    limit = page_size * page
+    offset = limit - page_size
+    objects.all()[offset:limit]
+    ```
+  - Get `page_count`
+    `from math import ceil`
+    ```
+    page_count = objects.count() / page_size
+    page_count = ceil(page_count)
+    ```
+  - Context variable
+    ```
+    "page": page,
+    "page_count": page_count,
+    "page_range": range(1, page_count)
+    ```
+  - Add `Previous` and `Next` Button
+-
+
+* GET Request: data from URL
+* Template Tag: apply logic on Template
+  - [var]|add:~
