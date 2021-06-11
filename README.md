@@ -253,7 +253,7 @@
       when subfolder for download is needed
   - FileField()
 
-# 3.0.2 Django AdminPanel [만들기
+# 3.0.2 Django AdminPanel 만들기
 
 - Form AdminPanel
   - `admin.py`
@@ -313,14 +313,17 @@
   - Duplicate Function by class meta
   - Enable Boolean Mark
     `[Function].boolean = True`
+- Create button `View on Site` by `reverse`
+  - Import `reverse`
+    `from django.urls import reverse`
+  - Override `get_absolute_url`
+    ```
+    def get_absolute_url(self):
+      return reverse("[namespace]:[name]", kwargs={[STR]: [VARIABLE]})
+    ```
+  * reverse: convert url_name to actual url
 
 * fieldsets: A group of fields
-* Assign Name to Object
-  set model a method `__str__`
-  ```def __str__(self):
-        return self.name
-  ```
-  - This name will appear on adminpanel
   - Django AdminPanel, it looks like blue title row
   - fieldsets = ([fieldset]("[FSName]", [content]{"field": ("~","~",)}),)
   - Default Fieldset: [AdminName].fieldsets
@@ -338,6 +341,12 @@
       ),
     )
   ```
+* Assign Name to Object
+  set model a method `__str__`
+  ```def __str__(self):
+        return self.name
+  ```
+  - This name will appear on adminpanel
 
 # 4.0 Abstract Model 만들기
 
