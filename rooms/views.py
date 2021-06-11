@@ -1,15 +1,26 @@
+from django.utils import timezone
 from django.shortcuts import render
-from django.core.paginator import Paginator
+from django.views.generic import ListView
 from . import models
 
 
-def all_rooms(req):
-    page = req.GET.get("page")
-    room_list = models.Room.objects.all()
-    paginator = Paginator(room_list, 10, orphans=5)
-    page = paginator.get_page(page)
-    return render(
-        req,
-        "rooms/home.html",
-        context={"page": page},
-    )
+class HomeView(ListView):
+
+    """ "HomeView Definition"""
+
+    model = models.Room
+    paginate_by = 10
+    paginate_orphans = 5
+    ordering = "created"
+    context_object_name = "rooms"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = timezone.now()
+        context["now"] = now
+        return context
+
+
+def room_detail(request, pk):
+    # print(pk)
+    return render(request, "rooms/detail.html")

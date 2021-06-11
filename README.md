@@ -431,15 +431,6 @@
   - reverse-accessor clashes, `[~]_[models]`
   - related_name can shorten names.
 
-# 7.0 유용한 Python 명령어
-
-- dir([object])
-  Return list of name
-- vars([object])
-  Return `__dict__` for class
-- super().~
-  Execute code from Parent Class
-
 # 8.3 Django에서 Media 다루기
 
 - Set path for uploaded media files
@@ -589,23 +580,33 @@
 
 # 10.0.1 Django URL 관리하기
 
-- `/config/url.py`
+- `/config/urls.py`
   - Import `include`
     `from django.urls import include`
   - Add path with `include` and `namespace`
     - `/core`
-      `path([URL], include([urls.py], namespace="[=app_name]"))`
+      `path("", include([urls.py], namespace="[=app_name]"))`
     - `/[App]`
-      ``
-- `/[App]/url.py`
+      `path([URL/]. include([urls.py], namespace="[=app_name]"))`
+- `/[App]/urls.py`
   - Create `urls.py` in each application folder(core included)
   - Import `path` and `views`
     `from django.urls import path`
     `from [App] import views as [App]_views`
+  - Add `app_name` same as `namespace`
   - Create `urlpatterns` and `path`
     `urlpatterns = [~]`
     `path("", [views.py].[View], name="~")`
-  - Add `app_name` same as `namespace`
+    - if [View] as class, add `.as_view()`
+
+# 12.0 Django Path 알아보기
+
+- Add Variable on URL
+  - <int:[variable]>
+  - make sure add argument on view
+    `def room_detail(request, pk):`
+- How to use `URL Tag` with `namespace` and `name`
+  `{% url "[namespace]:[name]" [argument:optional] %}`
 
 # 10.1 Django Render 이해하기
 
@@ -690,7 +691,6 @@
   - Add `Previous` and `Next` Button
 - Use Django Paginator
   [Link](https://docs.djangoproject.com/en/3.2/topics/pagination/)
-
   - Get `page` from URL
     `/?page=1`
     `page = [request].GET.get("page", [default])`
@@ -718,9 +718,73 @@
   - Handle `orphans`
     `Paginator([QuerySet], [PageSize], [Orphan])`
     [Orphan] - `orphans=~`
+- When Class Based View,
+  Page Object is given as `page_obj`
 
 * GET Request: data from URL
 * Template Tag: apply logic on Template
   - [var]|add:~
 * orphan: list of element not big as page_size
   when less or same as orphan merge with previous one
+
+# 11.7 Class based View(CBV) 만들기
+
+- Create Class and inherit `View`
+  `class [ViewName]([View]):`
+  - Set model
+    `model = [Model]`
+- Adjust URL's View as class
+  `[Class].as_view()`
+- Create template as `[AppName]/[App]_view.html`
+- Add context with `get_context_data` method
+  ```
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['[ContextName]'] = [VARAIBLE]
+    return context
+  ```
+- Use `object_list` and `page_obj` as variable on template
+  - object_list
+  - page_obj
+    : paginator stuff
+    - how to change `page_obj` name
+      context_object_name = "~"
+
+* Classy CBV
+  [Link](https://ccbv.co.uk/)
+* ListView
+  : A page representing a list of objects
+  - [Attribute]
+    - model
+    - paginate_by
+      : how many pages display in one page
+      `paginate_by = 10`
+    - paginate_orphans
+      `paginate_orphans = 5`
+    - ordering
+      `ordering = "created"`
+* URL Tag
+
+# 11.8 Class based View(CBV) vs. Function based View(FBV)
+
+- CBV(Class Based View)
+  - Powerful Mixin and Inheritance
+  - Skip Repetition
+- FBV(Function Based View)
+  - Configure Functionality easily
+
+# 유용한 Python 명령어
+
+- `dir([object])`
+  Return list of name
+- `vars([object])`
+  Return `__dict__` for class
+- `super().~`
+  Execute code from Parent Class
+- Handle Error
+  ```
+  try:
+    ~
+  except [Exception]:
+    ~
+  ```
