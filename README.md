@@ -771,6 +771,7 @@
   `class [ViewName]([View]):`
   - Set model
     `model = [Model]`
+    - Django View automatically return model lowercase as context
 - Adjust URL's View as class
   `[Class].as_view()`
 - Create template as `[AppName]/[App]_view.html`
@@ -801,6 +802,10 @@
       `paginate_orphans = 5`
     - ordering
       `ordering = "created"`
+* DetailView
+  - [Attribute]
+    - pk_url_kwarg
+      "pk"(default)
 * URL Tag
 
 # 11.8 Class based View(CBV) vs. Function based View(FBV)
