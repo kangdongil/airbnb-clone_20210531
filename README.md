@@ -860,15 +860,46 @@
   - Configure Functionality easily
 
 # 13.0 Django Form 만들기
-- Comprehense URL
+
+- Extract data from URL
   - get URL argument
     `request.GET.get("[ARG]", "[Default]")`
   - normalize argument
     - str.captialize(~)
-  - context argument
-- Create Form for GET Method(Submit)
+- Get data from DB
+  - get queryset from manager
+    `[Model].objects.all`
+    `[Model].objects.filter`
+- Context argument with categorization
+
+  - create `form` dict and `choices` dict
+    - form: Data from URL Extraction
+    - choices: QuerySet from manager
+
+  ```
+  form = {"city": city, "s_country": country}
+  choices = {"countries": countries}
+  ```
+
+  - unpack dicts and context
+    `{**form, **choices}`
+
+- Create Form on template
+  <form method="get" action=[dest]></form>
+    - one <button> is same as `submit`
 - Save values and choices according to URL
 
+  - <label for="~"><input id="~" />
+    - `label-for` and `input-id` should be the same
+    - `input-name` is URL arg when submitted
+    - `input-value` is given value
+  - <select id="~"><options>
+    <option value="~">: data form(shorten one recommended)
+    <option {% if [form] == [option] %}selected{% endif %}>
+  - <input type="number">
+
+  - <input type="checkbox">
+  - How to deal with ManyToMany Field
 
 # 유용한 Python 명령어
 
