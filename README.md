@@ -228,6 +228,7 @@
 * FieldType - Numeric
   - IntegerField()
   - DecimalField()
+  - FloatField()
 * FieldType - Others
   - BooleanField()
     True || False
@@ -387,6 +388,7 @@
     - CASCADE: affect every sub-object
     - PROTECT: forbid deletion until sub-object exist
     - SET_NULL: sub-object becomes orphan
+      - null=True is required.
     - SET_DEFAULT: default after deletion
   - gives access to other model's data
     `models.ForeignKey("users.User", ~)`
@@ -395,7 +397,10 @@
   - `models.ManyToManyField([ModelName])`
   - to improve adminpanel,
     `filter_horizontal = (~)`
--
+- OneToOneField: One model at a time
+
+  - `models.OneToOneField([ModelName], on_delete="models.~")`
+  - syntax is same as ForeignKey
 
 - String Method(Reference)
   Instead of Import, You can use String("~") to refer model. for model from other app, "[app].[model]"
@@ -528,6 +533,31 @@
     ~
     self.stdout.write(self.style.SUCCESS("~"))
     ```
+- Create Object with Manager
+  - for statement is useful when data is given as `list[]`
+    `[Model].objects.create([model]=~)`
+  - when want to check repetition, `objects.get_or_create`
+- Seed with `Random`
+  `import random`
+  - random choice
+    - import QuerySets
+      `[QuerySet] = [Module].objects.all()`
+      - when QuerySet should get data selectively,
+        `.filter([field]=[data])`
+    - random.choice
+      `"[field]": lambda x: random.choice([QuerySet])`
+      - instead of QuerySet, `list[]` works, too.
+  - random number
+    `[field]: lambda x: random.randint([from], [to])`
+- Seed ManyToMany field
+  - for statement for QuerySet
+    `amentities = Amenity.objects.all()`
+    `for a in amenities:`
+  - add `magic_number` and randomize with if statement
+    `magic_number = random.randint(0, 15)`
+    `magic_number % 2 == 0:`
+  - add element from ManyToMany Field
+    `[QuerySet].[Field].add([Element])`
 
 # 9.1 Django Seed로 데이터 Seed하기
 
@@ -536,14 +566,16 @@
 - Add `django_seed` in `THIRD_PARTY_APPS`
   `/config/settings.py`
 - Import Seeder and Module
-  ` from django_seed import Seed`
+  `from django_seed import Seed`
   `from [apps].models import [Module]`
-- Add "number" argument
+- Add argument "total"
   ```
   parser.add_argument(
-    "--number", default=1, type=int, help="~"
+    "--total", default=10, type=int, help="~"
   )
   ```
+- Import Argument on handle()
+  `total = options.get("total")`
 - Use Seeder on `handle` method
   - Start Seeder
     `seeder = Seed.seeder()`
@@ -554,6 +586,13 @@
 - Execute Seeder
   `seeder.execute()`
 - Customizing Seeder with `lambda x`
+  - `seeder.faker` for appropriate data
+    - use `lambda x`
+    * list of faker
+      - `seeder.faker.name()`
+      - `seeder.faker.sentence()`
+      - `seeder.faker.year()`
+      - `seeder.faker.address()`
   - seeder.execute() return pks
     - set variable `pk_list`
       `pk_list = seeder.execute()`
@@ -564,18 +603,6 @@
 
 * faker: library for fake stuff
   [Link](https://faker.readthedocs.io/en/master/providers/faker.providers.address.html)
-* Case of Random Example:
-  `import random`
-  - random choices
-    - import QuerySets
-      `[QuerySet] = [Module].objects.all()`
-    - random.choice
-      `"[field]": lambda x: random.choice([QuerySet])`
-  - random number
-    `[field]: lambda x: random.randint([from], [to])`
-* Case of Seeder_Faker Example
-  `"name": lambda x: seeder.faker.address()`
-  `"name": lambda x: seeder.faker.sentence()`
 
 # 10.0 Django Url과 View 알아보기
 
@@ -603,10 +630,19 @@
     `from django.urls import path`
     `from [App] import views as [App]_views`
   - Add `app_name` same as `namespace`
+    `app_name = [namespace]`
   - Create `urlpatterns` and `path`
     `urlpatterns = [~]`
     `path("", [views.py].[View], name="~")`
     - if [View] as class, add `.as_view()`
+  - Create function in views
+    - Import `render`
+      `from django.shortcuts import render`
+    - Create Function Based View(FBV),
+      ```
+      def all_[something](request):
+        return render(request, "[template].html")
+      ```
 
 # 12.0 Django Path 알아보기
 
@@ -637,7 +673,7 @@
   - Return Render
     ```
     def all_rooms(req):
-      return render(req, [template].html)
+      return render(req, "[template].html")
     ```
 - Render with Context
   - add context in `render` argument as `dict`
@@ -815,6 +851,8 @@
   - Skip Repetition
 - FBV(Function Based View)
   - Configure Functionality easily
+
+# 13.0 Django Form 만들기
 
 # 유용한 Python 명령어
 
