@@ -653,6 +653,13 @@
   - <int:[variable]>
   - make sure add argument on view
     `def room_detail(request, pk):`
+- How to GET URL Arguments
+  `/?city=seoul`
+  - request.GET.get the URL Argument
+  ```
+  def [VIEW](request):
+  [Variable] = request.GET.get("[Arg]", [Default])
+  ```
 - How to use `URL Tag` with `namespace` and `name`
   `{% url "[namespace]:[name]" [argument:optional] %}`
 
@@ -853,6 +860,15 @@
   - Configure Functionality easily
 
 # 13.0 Django Form 만들기
+- Comprehense URL
+  - get URL argument
+    `request.GET.get("[ARG]", "[Default]")`
+  - normalize argument
+    - str.captialize(~)
+  - context argument
+- Create Form for GET Method(Submit)
+- Save values and choices according to URL
+
 
 # 유용한 Python 명령어
 
