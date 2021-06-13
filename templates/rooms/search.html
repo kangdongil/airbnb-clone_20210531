@@ -61,8 +61,8 @@
             <input type="checkbox" id="instant" name="instant" {% if instant %}checked{% endif %}/>
         </div>
         <div>
-            <label for="super_host">BySuperhost Only?</label>
-            <input type="checkbox" id="super_host" name="super_host" {% if super_host %}checked{% endif %}/>
+            <label for="superhost">BySuperhost Only?</label>
+            <input type="checkbox" id="superhost" name="superhost" {% if superhost %}checked{% endif %}/>
         </div>
         <div>
             <h3>Amenities</h3>
@@ -108,5 +108,11 @@
 
     <h4>Searching by {{city}}</h4>
 
+    <h3>Results</h3>
+
+    {% for room in rooms %}
+        <h3>{{room.name}}</h3>
+    {% endfor %}
+    
 {% endblock content %}
     

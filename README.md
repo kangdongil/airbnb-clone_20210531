@@ -897,9 +897,64 @@
     <option value="~">: data form(shorten one recommended)
     <option {% if [form] == [option] %}selected{% endif %}>
   - <input type="number">
-
+    - int() data from URL
+      `int(request.GET.get())`
+      - <input attrib> as `id`, `value`, `name`
+      - `value="{{[CONTEXT]}}"`
   - <input type="checkbox">
+      - request.GET default as `False`(boolean)
+      - <input attrib> as `id`, `name`
+      - `{% if instant %}checked{% endif %}`
   - How to deal with ManyToMany Field
+
+    - getlist ManyToMany Field(form)
+      `request.GET.getlist([MODEL])`
+      `s_[MODEL]`
+    - get data from DB by manager(choices)
+      `[MODEL].[FIELD].objects.all()`
+    - Create Form for MtM Field
+
+    ```
+    <h3> TITLE
+    <ul>
+    {% for [OBJECT] in [OBJECT_LIST] %}
+    <li><label><input type="checkbox">
+    {% if amenity.pk|slugify in s_amenities %}
+    checked
+    {% endif %}
+
+    ```
+
+# 13.5 Django Filter 만들기
+
+- Create QuerySet from `objects.filter`
+  `rooms = Room.objects.filter(**filter_args)`
+- Create dict `{filter_args}` and add up
+  `filter_args = {}`
+  - default exist, try if statement
+    ```
+    if [URLarg] != "[Default]":
+        filter_args["[default]__[field_lookups]"] = [URLarg]
+    ```
+    if not, just filter_args
+  - For ManyToMany Field
+    ```
+    if len([URLarglist]) > 0:
+      for [URLarg] in [URLarglist]:
+        [filtered_context] = [f_c]filter([MtM]__pk=int(URLarg))
+    ```
+- Configure Results on template
+  ```
+  <h3>Results</h3>
+  {% for room in rooms%}
+    <h3>{{room.name}}</h3>
+  {% endfor %}
+  ```
+
+* Field Lookups: get the filtered data
+  - `__startswith`
+  - `__gte`: greater than equal
+  - `__lte`: less than equal
 
 # 유용한 Python 명령어
 
