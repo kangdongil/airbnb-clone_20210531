@@ -859,7 +859,7 @@
 - FBV(Function Based View)
   - Configure Functionality easily
 
-# 13.0 Django Form 만들기
+# 13.0 Form 만들기
 
 - Extract data from URL
   - get URL argument
@@ -925,7 +925,7 @@
 
     ```
 
-# 13.5 Django Filter 만들기
+# 13.5 Filter 만들기
 
 - Create QuerySet from `objects.filter`
   `rooms = Room.objects.filter(**filter_args)`
@@ -956,8 +956,56 @@
   - `__gte`: greater than equal
   - `__lte`: less than equal
 
+# 13.7 Django Form 만들기
+
+- Create `forms.py`
+  - import `django.forms`
+    `from django import forms`
+  - create Class Form
+    ```
+    class [Name]Form(forms.Form):
+    ~
+    ```
+- Import `form` on `views`
+  `from . import views`
+  `form = forms.[Name]Form(request.GET)`
+  - Return context `{"form": form}`
+- Create Forms Field
+  - syntax is same as `modelfield`
+    `forms.[Field](~)`
+    - allow empty form
+      `required=False`
+- Customize Forms Widget
+- {{form}} in <form> on template
+  - How to change Forms Display
+    {{form.as_p}}
+
+* Django Form
+  [Link](https://docs.djangoproject.com/en/3.2/ref/forms/api/)
+* Widget: HTML element configured by Django Forms
+* bounded form: Connected with Data and automatically validate it
+* FieldType - Text
+  - forms.CharField
+    initial
+  - forms.ModelChoiceField
+    queryset
+    empty_label
+  - forms.ModelMultipleChoiceField
+    queryset
+    widget=forms.CheckboxSelectMultiple
+* FieldType - Numeric
+  - forms.IntegerField
+* FieldType - Others
+  - forms.BooleanField
+  - CountryField
+    - Import CountryField
+      `from django_countries.fields import CountryField`
+    - How to set Form Model
+      `CountryField(default="~").formfield()`
+
 # 유용한 Python 명령어
 
+- `print()`
 - `dir([object])`
   Return list of name
 - `vars([object])`
