@@ -777,6 +777,8 @@
     `page = [request].GET.get("page", [default])`
   - Get QuerySet
     `[QuerySet] = [Module].objects.all()`
+    - filtered QuerySet should be ordered
+      `[QuerySet] = [QuerySet].order_by(~)`
   - Import `Paginator` and `paginate`
     `from django.core.paginator import Paginator`
     `paginator = Paginator([QuerySet], [Page_Size])`
