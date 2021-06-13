@@ -976,6 +976,8 @@
     - allow empty form
       `required=False`
 - Customize Forms Widget
+- filtered with cleaned_data
+  != 0 to is not None
 - {{form}} in <form> on template
   - How to change Forms Display
     {{form.as_p}}
