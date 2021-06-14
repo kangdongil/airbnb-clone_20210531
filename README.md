@@ -731,6 +731,7 @@
 
 # 10.3 Django Template 만들기
 
+- Add `.prettierignore` and add `templates` folder
 - Create `base.html` and [App] Folder in `/templates`
 - Extends `base.html`
   `{% extends "base.html" %}`
@@ -1011,13 +1012,69 @@
 
 - Create `login/` URL
   - `config/urls`
-    `path("users/", include("users.urls", namespace="users"))`
   - `users.urls`
 - Create Views
 - Create `login.html` for template
-- Login Button for template(`partials/nav`)
+  <form method="POST">
+  - Login Button for template(`partials/nav`)
   `{% url "users:login" %}`
-- Configure Login Form
+- Create LoginForm
+  ```
+  email = forms.EmailField()
+  password = forms.CharField(widget=forms.PasswordInput)
+  ```
+  - `views.py`
+    - import forms
+      `from . import forms`
+      `form = forms.LoginForm()`
+    - send form in context
+- Fix CSRF verification failed
+  `{% csrf_token %}`
+- Validate Data(`clean_[Field]` method)
+  - add method `clean_[FieldName]` in 'forms`
+    - make sure `clean_` return data or cause None
+    ```
+    def clean_[field](self):
+    [DATA] = self.cleaned_data.get("[FIELD]")
+    try:
+      check user=email exist
+      return email
+    except models.User.DoesNotExist:
+      raise forms.ValidationError("[Error_Msg]")
+    ```
+  - get cleaned data in `views`
+    ```
+    form = forms.[Form](request.POST)
+    if form.is_valid():
+      form.clean_data
+    ```
+- Validate Data(`clean` method)
+  - when data correlated to each other, `clean` method
+    ```
+    def clean(self):
+    [DATA] = self.cleaned_data.get("[FIELD]")
+    [DATA] = self.cleaned_data.get("[FIELD]")
+    try:
+      user = models.User.objects.get(email=email)
+      if user.check_password(password):
+        return self.cleaned_data
+      else:
+        [VALIDATION_ERROR]
+    except [User.DoesNotExist]:
+        [VALIDATION_ERROR]
+    ```
+  - check_password compare raw encrpyt password is right
+  - self_add_error() to make specfic field error
+    make sure error happen in specific fields(not in general)
+  - return self.cleaned_data
+
+* CSRF: Cross Site Request Forgery
+  - check POST request comes from valid website
+* `clean_[field]` method
+  - add Error if not validated
+  - format data in appropriate way
+* `user.check_password(password)`
+  compare raw password and encrpyted password is correct
 
 # 유용한 Python 명령어
 
