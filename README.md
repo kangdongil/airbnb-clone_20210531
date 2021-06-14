@@ -1015,9 +1015,18 @@
   - `users.urls`
 - Create Views
 - Create `login.html` for template
-  <form method="POST">
+  - <form> as POST
+    <form method="POST">
   - Login Button for template(`partials/nav`)
-  `{% url "users:login" %}`
+    `{% url "users:login" %}`
+  - if statement with `user.is_authenticated`
+    ```
+    {% if user.is_authenticated %}
+      Log out
+    {% else %}
+      Log in
+    {% endif %}
+    ```
 - Create LoginForm
   ```
   email = forms.EmailField()
@@ -1067,6 +1076,23 @@
   - self_add_error() to make specfic field error
     make sure error happen in specific fields(not in general)
   - return self.cleaned_data
+- Configure Login and Logout
+  - import `authenticate`, `login`, `logout`
+    `from django.contrib.auth import authenticate, login, logout`
+  - authenticate user
+    `user = authenticate(request, username=email, password=password)`
+    ```
+    if user is not None:
+      login(request, user)
+      return redirect(reverse("core:home"))
+    ```
+  - create log_out method
+    ```
+    def log_out(request):
+      logout(request)
+      return redirect(reverse("core:home"))
+    ```
+    context_processor automatically send data by context
 
 * CSRF: Cross Site Request Forgery
   - check POST request comes from valid website
