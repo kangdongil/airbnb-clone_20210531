@@ -25,9 +25,28 @@ def log_out(request):
     return redirect(reverse("core:home"))
 
 
-""" 
-def login_view(request):
+""" def login_view(request):
     if request.method == "GET":
         pass
     elif request.method == "POST":
         pass """
+
+
+class SignUpView(FormView):
+    template_name = "users/signup.html"
+    form_class = forms.SignUpForm
+    success_url = reverse_lazy("core:home")
+    initial = {
+        "first_name": "noru",
+        "last_name": "kang",
+        "email": "akang5728@naver.com",
+    }
+
+    def form_valid(self, form):
+        form.save()
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password")
+        user = authenticate(self.request, username=email, password=password)
+        if user is not None:
+            login(self.request, user)
+        return super().form_valid(form)

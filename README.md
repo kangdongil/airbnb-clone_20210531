@@ -1111,10 +1111,35 @@
   form_class = "[Form]"
   success_url = reverse_lazy("core:home")
   ```
-- ㄴㄹㄴ
+- add `form_valid` method
+  ```
+  def form_valid(self, form):
+    (authenticate)
+    return super().form_valid(form)
+  ```
 
 * `reverse_lazy`
   `from django.urls import reverse_lazy`
+
+# 15.0 Signup 구현하기
+
+- Create SignUpView inherit FormView
+  ```
+  class SignUpView(FormView):
+    template_name = "[TEMPLATE]"
+    form_class = [FORM]
+    success_url = reverse_lazy("core:home")
+    initial = {~}
+  ```
+- Create `users/signup/` URL
+- Create SignUpForm
+  `first_name, last_name, email, password, password1`
+  - add `label` to password1
+- Validate Data by `clean`
+- `save` method on forms
+  `User.objects.create_user([USERNAME], [EMAIL], [PASSWORD])`
+  `user.save()`
+- check `form_valid`
 
 # 유용한 Python 명령어
 
