@@ -1102,6 +1102,20 @@
 * `user.check_password(password)`
   compare raw password and encrpyted password is correct
 
+# 14.5 FormView로 로그인 구현하기
+
+- Instead of LoginView, use FormView
+  `class LoginView(FormView):`
+  ```
+  template_name = "[Template]"
+  form_class = "[Form]"
+  success_url = reverse_lazy("core:home")
+  ```
+- ㄴㄹㄴ
+
+* `reverse_lazy`
+  `from django.urls import reverse_lazy`
+
 # 유용한 Python 명령어
 
 - `print()`
