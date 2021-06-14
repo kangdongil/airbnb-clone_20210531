@@ -1007,6 +1007,18 @@
     - How to set Form Model
       `CountryField(default="~").formfield()`
 
+# 14.0 LOG-IN & LOG-OUT 구현하기
+
+- Create `login/` URL
+  - `config/urls`
+    `path("users/", include("users.urls", namespace="users"))`
+  - `users.urls`
+- Create Views
+- Create `login.html` for template
+- Login Button for template(`partials/nav`)
+  `{% url "users:login" %}`
+- Configure Login Form
+
 # 유용한 Python 명령어
 
 - `print()`
