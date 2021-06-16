@@ -200,6 +200,8 @@
     ```
   - Name Function when displayed
     [FunctionName].short_descriptions = ""
+  - create something then save
+    self.save()
 - Give Name to Model's Object(`__str__`)
 
 * model: describe shape of the data
@@ -651,8 +653,9 @@
   `reverse("[namespace]:[name]")`
 - Add Variable on URL
   - <int:[variable]>
+  - <str:[variable]>
   - make sure add argument on view
-    `def room_detail(request, pk):`
+    `def room_detail(request, [variable]):`
 - How to GET URL Arguments
   `/?city=seoul`
   - request.GET.get the URL Argument
@@ -1153,7 +1156,6 @@
   EMAIL_FROM ** noreply
   ```
 - Read EnvironmentVariable by `django-dotenv`
-
   - Create `.env` File
   - Put variable which handle private information
   - install `django-dotenv`
@@ -1166,9 +1168,7 @@
     ```
   - How to use env_var
     `os.environ.get("[ENVIRONMENT_VARIABLE]")`
-
-  `email_confirmed = models.BooleanField(default=False)`
-
+    `email_confirmed = models.BooleanField(default=False)`
 - Configure Verification Process
   - create `verify_email` logic in models.method
     - send_mail
