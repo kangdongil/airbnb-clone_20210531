@@ -1150,8 +1150,10 @@
   EMAIL_PORT
   EMAIL_HOST_USER
   EMAIL_HOST_PASSWORD
+  EMAIL_FROM ** noreply
   ```
 - Read EnvironmentVariable by `django-dotenv`
+
   - Create `.env` File
   - Put variable which handle private information
   - install `django-dotenv`
@@ -1164,8 +1166,24 @@
     ```
   - How to use env_var
     `os.environ.get("[ENVIRONMENT_VARIABLE]")`
-- Create `email_confirmed` model in "users.models"
+
   `email_confirmed = models.BooleanField(default=False)`
+
+- Configure Verification Process
+  - create `verify_email` logic in models.method
+    - send_mail
+      `from django.core.mail import send_mail`
+      ```
+      send_mail([TITLE], [TEXT], [NOREPLY], fail_silently=True, html_message)
+      ```
+  - send html_message
+    - strip_tags
+      - if email-user, doesn't use html email
+        `from django.utils.html import strip_tags`
+    - render_to_string
+      - render html for email
+        `from django.template.loader import render_to_string`
+        `render_to_string([HTML], {[CONTEXT]})`
 
 * Mailgun
   [Link](https://app.mailgun.com/)
