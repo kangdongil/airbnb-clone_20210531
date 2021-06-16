@@ -1141,6 +1141,20 @@
   `user.save()`
 - check `form_valid`
 
+# 16.0 Django Email 알아보기
+
+- Add Email-related settings in `/config/settings.py`
+  - In Mailgun, [Domain_settings]_[STMP_credentials]
+  ```
+  EMAIL_HOST
+  EMAIL_PORT
+  EMAIL_HOST_USER
+  EMAIL_HOST_PASSWORD
+  ```
+  
+* Mailgun
+  [Link](https://app.mailgun.com/)
+
 # 유용한 Python 명령어
 
 - `print()`

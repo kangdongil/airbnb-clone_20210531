@@ -142,3 +142,11 @@ AUTH_USER_MODEL = "users.User"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#media-root
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/media/"
+
+# Email Configuration
+# https://docs.djangoproject.com/en/3.2/topics/email/#module-django.core.mail
+
+EMAIL_HOST = "smtp.mailgun.org"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = "airbnb@sandbox5933f6017a1b426fa64ad32578fe043b.mailgun.org"
+EMAIL_HOST_PASSWORD = "87b915f8c67038094c1d0f8a8d08bced-24e2ac64-1139d6d1"
