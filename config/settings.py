@@ -148,5 +148,5 @@ MEDIA_URL = "/media/"
 
 EMAIL_HOST = "smtp.mailgun.org"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = "airbnb@sandbox5933f6017a1b426fa64ad32578fe043b.mailgun.org"
-EMAIL_HOST_PASSWORD = "87b915f8c67038094c1d0f8a8d08bced-24e2ac64-1139d6d1"
+EMAIL_HOST_USER = os.environ.get("MAILGUN_USERNAME")
+EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_PASSWORD")

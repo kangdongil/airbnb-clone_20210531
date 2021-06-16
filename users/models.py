@@ -39,3 +39,5 @@ class User(AbstractUser):
     language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES, blank=True)
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES, blank=True)
     superhost = models.BooleanField(default=False)
+    email_confirmed = models.BooleanField(default=False)
+    email_secret = models.CharField(max_length=120, default="", blank=True)

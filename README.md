@@ -1144,14 +1144,29 @@
 # 16.0 Django Email 알아보기
 
 - Add Email-related settings in `/config/settings.py`
-  - In Mailgun, [Domain_settings]_[STMP_credentials]
+  - In Mailgun, [Domain_settings]\_[STMP_credentials]
   ```
   EMAIL_HOST
   EMAIL_PORT
   EMAIL_HOST_USER
   EMAIL_HOST_PASSWORD
   ```
-  
+- Read EnvironmentVariable by `django-dotenv`
+  - Create `.env` File
+  - Put variable which handle private information
+  - install `django-dotenv`
+    `pip install django-dotenv`
+  - Import dotenv in `manage.py`
+    `import dotenv`
+    ```
+    if main
+    dotenv.read_dotenv()
+    ```
+  - How to use env_var
+    `os.environ.get("[ENVIRONMENT_VARIABLE]")`
+- Create `email_confirmed` model in "users.models"
+  `email_confirmed = models.BooleanField(default=False)`
+
 * Mailgun
   [Link](https://app.mailgun.com/)
 
