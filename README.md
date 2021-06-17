@@ -485,6 +485,9 @@
   - mark_safe <HTML>
     `from django.utils.html import mark_safe`
     `mark_safe(<HTML>)`
+- when objects.create(), [ImageField].save()
+  Byte File need to be ContentFile
+  `from django.core.files.base import ContentFile`
 
 * MEDIA_URL: URL that handles the media served from `MEDIA_ROOT`
   - must end in a slash(/)
@@ -1217,7 +1220,11 @@
         - `headers={"Accept": "application/json"}`
       - return redirect home
     3. Your app accesses the API with the user's access token
+- Kakao OAuth
+  - Configure User Management
 
+  * Kakao Developers
+    [Link](https://developers.kakao.com/)
 * OAuth
   Allow Social Media login account
 * GitHub OAuth Docs
