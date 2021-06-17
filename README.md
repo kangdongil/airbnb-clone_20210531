@@ -1082,6 +1082,7 @@
   - self_add_error() to make specfic field error
     make sure error happen in specific fields(not in general)
   - return self.cleaned_data
+- Use password_validator from django
 - Configure Login and Logout
   - import `authenticate`, `login`, `logout`
     `from django.contrib.auth import authenticate, login, logout`
@@ -1221,10 +1222,12 @@
       - return redirect home
     3. Your app accesses the API with the user's access token
 - Kakao OAuth
+
   - Configure User Management
 
   * Kakao Developers
     [Link](https://developers.kakao.com/)
+
 * OAuth
   Allow Social Media login account
 * GitHub OAuth Docs
