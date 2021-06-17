@@ -1204,13 +1204,26 @@
       - client_id
       - redirect_uri
       - scope
+      - allow_signup(optional)
     2. Users are redirected back to your site by GitHub
+    - create `github_callback` view
+      - Install `Requests`
+        `pip install requests`
+        `import requests`
+      - request POST with required parameters
+        - client_id
+        - client_secret
+        - code
+        - `headers={"Accept": "application/json"}`
+      - return redirect home
     3. Your app accesses the API with the user's access token
 
 * OAuth
   Allow Social Media login account
 * GitHub OAuth Docs
   [Link](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps)
+* access-token
+  help access to github api
 
 # 유용한 Python 명령어
 
