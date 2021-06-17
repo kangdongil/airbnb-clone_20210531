@@ -1188,6 +1188,30 @@
 * Mailgun
   [Link](https://app.mailgun.com/)
 
+# 17.0 OAuth로 로그인하기
+
+- GitHub OAuth
+  - How to OAuth Settings
+    `[Settings]-[Dev_settings]-[OAuth]`
+    - Homepage `http://127.0.0.1:8000/`
+    - Authorization callback URL
+      `http://127.0.0.1:8000/users/login/github/callback`
+    - Get Github ID and Secret
+  - OAuth Authorization Process
+    1. Users are redirected to request their Github identity
+    - Request `http://127.0.0.1:8000/users/login/github/callback`
+    - Required Parameters
+      - client_id
+      - redirect_uri
+      - scope
+    2. Users are redirected back to your site by GitHub
+    3. Your app accesses the API with the user's access token
+
+* OAuth
+  Allow Social Media login account
+* GitHub OAuth Docs
+  [Link](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps)
+
 # 유용한 Python 명령어
 
 - `print()`
