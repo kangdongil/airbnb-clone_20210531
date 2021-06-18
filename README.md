@@ -1242,7 +1242,7 @@
 - Reduce Repetition by `@apply` stuff
 - Ready-made settings(such as `color-palette`, `default-sizing`) available
 
-# 19.1
+# 19.1 TailwindCSS 설치하기
 
 - VSCode Extension
   - Tailwind CSS Intellisense
@@ -1256,12 +1256,27 @@
   - Create `gulpfile.js`
   - Create folder `/assets` for scss file
     `/assets/scss/styles.scss`
-  - Include Tailwind in CSS
+  - Include Tailwind directive in CSS
     ```
     @tailwind base;
     @tailwind components;
     @tailwind utilities;
     ```
+  - when scss file modified, `npm run css`
+  - Set Static Files
+    ```
+    STATIC_URL = "/static/"
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+    ```
+  - Load static/scss
+    `{% load static %}`
+    `<link rel="stylesheet" href="{% static 'css/styles.css' %}">`
+
+# 19.3 TailwindCSS 사용하기
+
+- every CSS code should be written on `/asset/styles.scss`
+- `npm run css` will convert sass to css by gulp
+- `static` folder is for browser, `asset` folder is for programmer
 
 # 유용한 Python 명령어
 
