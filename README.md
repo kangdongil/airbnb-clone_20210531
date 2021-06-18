@@ -1242,6 +1242,11 @@
 - Reduce Repetition by `@apply` stuff
 - Ready-made settings(such as `color-palette`, `default-sizing`) available
 
+* How TailwindCSS applied
+  - every CSS code should be written on `/asset/styles.scss`
+  - `npm run css` will convert sass to css by gulp
+  - `static` folder is for browser, `asset` folder is for programmer
+
 # 19.1 TailwindCSS 설치하기
 
 - VSCode Extension
@@ -1274,9 +1279,14 @@
 
 # 19.3 TailwindCSS 사용하기
 
-- every CSS code should be written on `/asset/styles.scss`
-- `npm run css` will convert sass to css by gulp
-- `static` folder is for browser, `asset` folder is for programmer
+- container
+  : Component fixed element's width to the current breakpoint
+
+* rem: root em
+  - em: measurement relative to closest font-size
+  - many responsive design website use this unit
+  - `root em` is based on html
+  - rem default font size is `16pt`
 
 # 유용한 Python 명령어
 
