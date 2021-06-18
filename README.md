@@ -1281,6 +1281,11 @@
 
 - container
   : Component fixed element's width to the current breakpoint
+  - w
+  - h
+  - m
+  - p
+- @apply
 
 * rem: root em
   - em: measurement relative to closest font-size
