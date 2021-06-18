@@ -1,0 +1,22 @@
+{
+  "name": "airbnb-clone_20210531",
+  "version": "1.0.0",
+  "description": "- Chrome\r - VSCode\r - VSCode Extension\r   - Python\r   - Djaneiro - Django Snippets\r   - Jinja\r - Python\r - VEW(VirtualEnvWrapper)\r - Git\r   - `git init`\r   - `git remote origin master ~.git`",
+  "scripts": {
+    "css": "gulp"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.2.6",
+    "postcss": "^8.3.5",
+    "tailwindcss": "^2.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-csso": "^4.0.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-sass": "^4.1.0",
+    "node-sass": "^6.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0"
+  }
+}

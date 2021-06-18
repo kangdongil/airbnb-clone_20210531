@@ -140,3 +140,6 @@ cython_debug/
 # Django Media
 /uploads
 *.zip
+
+# NodeJs GitIgnore
+node_modules

@@ -1235,6 +1235,34 @@
 * access-token
   help access to github api
 
+# 19.0 TailwindCSS란,
+
+- utility-first CSS Framework highly customizable
+- CSS-properties could be subtitute with `class-name`
+- Reduce Repetition by `@apply` stuff
+- Ready-made settings(such as `color-palette`, `default-sizing`) available
+
+# 19.1
+
+- VSCode Extension
+  - Tailwind CSS Intellisense
+- Setup for Installing TailwindCSS
+  - Install Gulp
+    `npm install -D gulp gulp-postcss gulp-sass gulp-csso node-sass`
+  - Install Tailwindcss
+    `npm install -D tailwindcss@latest postcss@latest autoprefixer@latest`
+  - Create Tailwind config file
+    `npx tailwind init`
+  - Create `gulpfile.js`
+  - Create folder `/assets` for scss file
+    `/assets/scss/styles.scss`
+  - Include Tailwind in CSS
+    ```
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+    ```
+
 # 유용한 Python 명령어
 
 - `print()`
