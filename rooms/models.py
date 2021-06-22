@@ -106,5 +106,9 @@ class Room(core_models.TimeStampedModel):
         self.city = str.capitalize(self.city)
         super().save(*args, **kwargs)  # Call the real save() method
 
+    def first_photo(self):
+        (photo,) = self.photos.all()[:1]
+        return photo.file.url
+
     def __str__(self):
         return self.name

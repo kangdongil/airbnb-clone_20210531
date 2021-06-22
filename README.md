@@ -746,6 +746,8 @@
   - `{% block [Name] %} ~ {% endblock %}` in extended one
 - Add Partials
   - `{% include '[html]' %}`
+  - to context variable, add it with 'with'
+    `{% include '[html]' with ~=~>%`
 
 * block: input where child give contents to parent
 

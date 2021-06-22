@@ -1,6 +1,4 @@
-<h3>
-    <a href="{% url "rooms:detail" room.pk %}">
-        <!--Room Card Information-->
-        {{room.name}} / ${{room.price}}
-    </a>
-</h3>
+<div class="w-1/4 mb-10 px-2 ">
+    <div class="w-full h-64 bg-cover bg-center rounded-lg"
+        style="background-image: url({{room.first_photo}})"></div>
+</div>
