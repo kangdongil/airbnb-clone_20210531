@@ -5,7 +5,6 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.base import ContentFile
-from django.contrib.auth.forms import UserCreationForm
 from . import forms, models
 
 
@@ -29,22 +28,11 @@ def log_out(request):
     return redirect(reverse("core:home"))
 
 
-""" def login_view(request):
-    if request.method == "GET":
-        pass
-    elif request.method == "POST":
-        pass """
-
-
 class SignUpView(FormView):
+
     template_name = "users/signup.html"
-    form_class = UserCreationForm
+    form_class = forms.SignUpForm
     success_url = reverse_lazy("core:home")
-    initial = {
-        "first_name": "noru",
-        "last_name": "kang",
-        "email": "akang5728@naver.com",
-    }
 
     def form_valid(self, form):
         form.save()
@@ -63,7 +51,7 @@ def complete_verification(request, key):
         user.email_verified = True
         user.email_secret = ""
         user.save()
-        # to do : add success message
+        # to do: add succes message
     except models.User.DoesNotExist:
         # to do: add error message
         pass
