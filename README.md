@@ -1279,12 +1279,23 @@
 
 # 19.3 TailwindCSS 사용하기
 
+- rem & value
 - container
   : Component fixed element's width to the current breakpoint
-  - w
-  - h
-  - m
-  - p
+  - w(idth)
+  - h(eight)
+  - m(argin)
+  - p(adding)
+  - t(op) / b(ottom) / l(eft) / r(ight)
+  - x(left+right) / y(top+bottom)
+  - rounded
+- background
+  - bg
+- How to Extend ClassName
+  - `tailwind.config.js`
+  - Add property in `theme/extend`
+    `[property]: {"[classname]": "[css]", ~}`
+  - run `npm run css`
 - @apply
 
 * rem: root em
