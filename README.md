@@ -1306,6 +1306,11 @@
   - `root em` is based on html
   - rem default font size is `16pt`
 
+# 21.0 Message Framework
+
+- get_absolute_url
+  - want to see object in admin panel
+
 # 유용한 Python 명령어
 
 - `print()`
