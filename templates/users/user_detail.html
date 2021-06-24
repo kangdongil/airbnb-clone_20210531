@@ -5,8 +5,8 @@
 {% endblock page_title %}
     
 {% block content %}
-
-    <div class="container xl:w-1/4 lg:w-5/12 md:w-1/2 mx-auto my-10 p-6 flex flex-col items-center border border-gray-400">
+<div class="h-75vh">
+    <div class="container min- xl:w-1/4 lg:w-5/12 md:w-1/2 mx-auto my-10 p-6 flex flex-col items-center border border-gray-400">
         
         {% include 'mixins/user_avatar.html' with user=user_obj %}
             
@@ -19,8 +19,25 @@
             {% endif %}
                 
         </div>
-        <span class="text-lg">{{user.bio}}</span>
+        <span class="text-lg mb-6">{{user_obj.bio}}</span>
 
-        <a href="#" class="btn">Edit Profile</a>
+        
+        {% if user == user_obj %}
+            <a href="{% url 'users:update' %}" class="btn-link">Edit Profile</a>
+        {% endif %}
+
+        
+    {% if user_obj.rooms.count > 0 %}
     </div>
+        <h3 class="mb-12 text-2xl text-center">{{user_obj.first_name}}'s Rooms</h3>
+        <div class="container mx-auto pb-10">
+            <div class="flex flex-wrap mb-10">
+                {% for room in user_obj.rooms.all %}
+                    {% include 'mixins/room_card.html' with room=room %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
 {% endblock content %}
