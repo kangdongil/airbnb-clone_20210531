@@ -9,5 +9,6 @@
   "python.formatting.provider": "black",
   "css.validate": false,
   "less.validate": false,
-  "scss.validate": false
+  "scss.validate": false,
+  "python.pythonPath": "C:\\Users\\dongil\\.virtualenvs\\django\\Scripts\\python.exe"
 }
