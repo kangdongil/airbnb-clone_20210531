@@ -1,3 +1,7 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 
-# Create your views here.
+app_name = "reviews"
+
+
+def create_review(request):
+    pass
