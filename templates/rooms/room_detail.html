@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load sexy_capitals %}
 
 
 {% block page_title %}
@@ -15,7 +16,7 @@
         {% for photo in room.get_preview_photos %}
             <div class="w-1/2 h-auto bg-cover lg:bg-center border border-gray-500"
                 style="background-image: url({{photo.file.url}})">
-
+img
             </div>
         {% endfor %}
         </div>
@@ -103,6 +104,7 @@
         {% if room.host == user %}
             <a href="{% url 'rooms:edit' room.pk %}" class="btn-link block">Edit Room</a>
         {% else %}
+            {{'somethingtt'|sexy_capitals}}
             {% if not request.session.is_hosting %}
                 {% for calendar in room.get_calendars %}
                 <div class="mb-20">
