@@ -7,10 +7,11 @@
         <span>&copy: 2021 Nbnb, Inc. {% trans "All rights reserved." %}</span>
     </div>
     <div class="mt-10 flex">
-    <select class="w-1/5 h-8" id="js-lang">
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="kr">한국어</option>
-    </select>
+        {% get_current_language as LANGUAGE_CODE %}
+        <select class="w-1/5 h-8" id="js-lang">
+            <option value="en" {% if LANGUAGE_CODE == 'en'%}selected{% endif %}>English</option>
+            <option value="es" {% if LANGUAGE_CODE == 'es'%}selected{% endif %}>Español</option>
+            <option value="ko" {% if LANGUAGE_CODE == 'ko'%}selected{% endif %}>한국어</option>
+        </select>
     </div>
 </footer>
