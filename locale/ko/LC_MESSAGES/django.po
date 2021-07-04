@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-04 10:32+0900\n"
+"POT-Creation-Date: 2021-07-04 10:45+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,3 +29,8 @@ msgstr "무단복제를 금합니다"
 #: .\templates\partials\footer.html:7
 msgid "All rights reserved."
 msgstr "노마드가 모든 권리를 보유함"
+
+#: .\templates\rooms\room_list.html:30
+#, python-format
+msgid "Page %(current_page)s of %(total_pages)s"
+msgstr "%(total_pages)s쪽 중 %(current_page)s쪽"
