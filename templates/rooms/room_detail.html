@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load is_booked %}
+{% load is_booked i18n %}
 
 
 {% block page_title %}
@@ -34,13 +34,14 @@ img
                     </span>
                 </div>
                 <a href="{{room.host.get_absolute_url}}"
-                    class="flex flex-col items-center">
-                    {% include "mixins/user_avatar.html" with user=room.host %}
-                    <span class="mt-2 text-gray">
-                        {{room.host.first_name}}
-                    </span>
-                </a>
-            </div>
+                class="flex flex-col items-center">
+                {% include "mixins/user_avatar.html" with user=room.host %}
+                <span class="mt-2 text-gray">
+                    {{room.host.first_name}}
+                </span>
+            </a>
+        </div>
+        <a class="btn-link block mb-10 w-2/5" href="{% url 'lists:save-room' room.pk %}">{% trans 'Save to Favorite' %}</a>
             <div class="flex border-section">
                 <span class="mr-5 font-light">{{room.room_type}}</span>
                 <span class="mr-5 font-light">{{room.guests}} guest{{room.guests|pluralize}}</span>
