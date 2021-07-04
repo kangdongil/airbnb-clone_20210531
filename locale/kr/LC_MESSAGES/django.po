@@ -19,12 +19,12 @@ msgstr ""
 
 #: .\templates\base.html:26
 msgid "Search By City"
-msgstr ""
+msgstr "도시 이름으로 찾기"
 
 #: .\templates\partials\footer.html:4
 msgid "Please don't copy us."
-msgstr ""
+msgstr "무단복제할 시 법적 규제를 받을 수 있습니다"
 
 #: .\templates\partials\footer.html:6
 msgid "All rights reserved."
-msgstr ""
+msgstr "노마드는 모든 권리를 보유함"
