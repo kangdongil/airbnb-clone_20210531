@@ -1311,6 +1311,26 @@
 - get_absolute_url
   - want to see object in admin panel
 
+# 26.0
+
+- `pip install awsebcli --upgrade`
+  - check installed: `eb` `eb --version`
+  - [link](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-advanced.html)
+- `eb init` `10`
+- `IAM` create user
+  - access type: programmatic access
+  - set permissions: administeraccess
+  - aws-access-id, aws-secret-key
+- - `pip freeze > requirements.txt`
+  - `mkdir .ebextensions` `touch .ebextensions/django.config`
+    ```
+    option_settings:
+    aws:elasticbeanstalk:container:python:
+    WSGIPath: ebdjango.wsgi:application
+    ```
+  - `eb create [ENVNAME]`
+  - [link](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html)
+
 # 유용한 Python 명령어
 
 - `print()`
